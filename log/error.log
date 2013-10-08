@@ -1,0 +1,48 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 239, in process
+    return self.handle()
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 417, in _delegate
+    cls = getattr(mod, cls)
+AttributeError: 'module' object has no attribute 'LoginAdmin'
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 239, in process
+    return self.handle()
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 417, in _delegate
+    cls = getattr(mod, cls)
+AttributeError: 'module' object has no attribute 'LoginAdmin'
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 239, in process
+    return self.handle()
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 420, in _delegate
+    return handle_class(cls)
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 396, in handle_class
+    return tocall(*args)
+  File "/home/ajie/songshu/web/cgi/editorcontroller/LoginAdmin.py", line 13, in POST
+    user = UserCtrl().loginAdminByEmail(i.email, i.password)
+NameError: global name 'UserCtrl' is not defined
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 239, in process
+    return self.handle()
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 420, in _delegate
+    return handle_class(cls)
+  File "/usr/local/lib/python2.7/dist-packages/web/application.py", line 396, in handle_class
+    return tocall(*args)
+  File "/home/ajie/songshu/web/cgi/editorcontroller/LoginAdmin.py", line 15, in POST
+    site_helper.loginAdmin(user)
+  File "/home/ajie/songshu/web/cgi/site_helper.py", line 112, in loginAdmin
+    session.admin_user_name = user.username
+  File "/usr/local/lib/python2.7/dist-packages/web/utils.py", line 76, in __getattr__
+    raise AttributeError, k
+AttributeError: 'username'
+

@@ -1,0 +1,18 @@
+$def with(page_name, content, title, tip)
+
+$# ../../editorcontroller/content/BaseLevelTable.py
+
+$if page_name == 'ad':
+    $ style = "textarea03"
+$else:
+    $ style = "textarea01"
+
+<h2 class="block_title">$title</h2>
+
+<p class="tip">$tip</p>
+
+<form action="/admin/leveltable" method="POST" >
+    <input type="hidden" name="page" value="$page_name" />
+    <textarea name="content" autocomplete="off" class="$style" >$content</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>

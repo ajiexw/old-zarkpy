@@ -1,0 +1,44 @@
+$var jsfiles: /js/Feedback.js
+
+<div fx="corner[radius=8]" class="feedback box01 corner8px clearfix">
+    <div showforlogin="true" >
+        <form action="/post/insert?referer=/success?msg=感谢您的意见,我们将尽快把处理结果用邮件反馈给您." method="POST" enctype="multipart/form-data" class="basicform" >
+            <div class="clearfix">
+                <h2>意见反馈</h2>
+                <input type="hidden" name="model_name" value="Feedback" />
+
+                <p class="title">选择类型:</p>
+                <select name="type">
+                    <option value="Bug" >Bug</option>
+                    <option value="意见或建议" >意见/建议</option>
+                    <option value="咨询" >咨询</option>
+                    <option value="合作" >合作</option>
+                    <option value="其它" >其它</option>
+                </select>
+
+                <p class="title">参考页面地址:</p>
+                <input type="text" name="position" value="" autocomplete="off" class="inputFill corner4px" />
+
+                <p class="title">请告诉我们您发现的问题:</p>
+                <textarea name="content" class="corner4px" style="width:560px; height:100px; resize:none; color:#888;"></textarea>
+
+                <p class="title">选择截图(如果有, 请上传):</p>
+                <div class="file corner4px"> 
+                    <input type="file" name="imagefile" autocomplete="off" fx="validation[type=endswith;values=.jpg,.png,.jpeg;invalid_id=feed_image_error;invalid_msg=只能接受jpg/jpeg/png格式的图片;ignorecase] validation[type=filesize;min=10240;max=4194304;invalid_id=feed_image_error;invalid_msg=图片的尺寸必须大于10k,小于4M] " />
+                    <span id="feed_image_error" class="file_error hidden"></span>
+                </div>
+            </div>
+
+            <div class="clearfix" style="margin-bottom:30px;">
+                <a href="javascript:void(0);" onclick="$$(this).parents('form').submit(); return false;" class="btnFx01 corner4px left" style="margin:20px 0 20px 0" >提交</a>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div showforunlogin="true" class="s_p_inner02 fx corner8px basic_tip clearfix" >
+        <h2>请<a href="/login?referer=/feedback" style="margin:0 5px;" >登录</a>之后再提交您的反馈</h2>
+
+    </div>
+</div>

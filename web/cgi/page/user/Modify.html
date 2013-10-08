@@ -1,0 +1,173 @@
+$def with(user)
+$var jsfiles: /js/page/TestSkin.js
+
+$# jsfile: ../../../js/page/TestSkin.js
+    <div class="form_wrap clearfix right" style="border-left:1px dotted #ddd; padding-left:35px;">
+        <form id="user_modify" action="?check_task=all_info&referer=/success%3Fmsg=修改成功%26referer=/user/$user.Userid" method="POST" enctype="multipart/form-data" class="basicform register_page left" style="position:relative; z-index:20; width:100%; " >
+
+            <h3>基本信息</h3>
+            <div class="form_row clearfix">
+                <label>Email:</label>
+                <span style="height:30px;line-height:30px;">$user.email</span>
+                $if user.activated == 'off':
+                    <a href="/sendacode?referer=/accounts" >再次给我发送验证邮件</a>
+            </div>
+
+            <div class="form_row clearfix">
+                <label>用户名:</label>
+                <input name="username" type="text" value="$user.username" fx="validation[type=notempty;invalid_id=error_tip;invalid_msg=请输入用户名] validation[type=username;invalid_id=error_tip;invalid_msg=用户名不能包含空格]"  class="inputFill corner4px left" style="margin-bottom:0px;" />
+            </div>
+            
+            <div class="form_row clearfix">
+                <label>性别:</label>
+                <div style="height:30px;line-height:30px;">
+                    <input name="sex" type="radio" value="女" fx="defaultvalue[value=$user.sex]" /><span>女</span>
+                    <input name="sex" type="radio" value="男" /><span>男</span>
+                </div>
+            </div>
+
+            <div class="form_row clearfix">
+                <label>生日:</label>
+                <input name="birthday" type="text" value="$user.birthday" fx="datepicker[style=overcast;changeMonth;changeYear;language=chinese;] validation[type=notempty;invalid_id=error_tip;invalid_msg=请输入生日...]"  class="inputFill corner4px" style="margin-bottom:0px;" />
+            </div>
+
+            <!--
+            <p class="title">登录密码: <a href="/accounts/password" >更改</a> </p>
+            <div class="portrait_box">
+                <h3>修改头像<p style="font-size:12px;">建议上传200*270像素以上的照片</p></h3>msg = web.input().get('msg', '')
+        referer = web.input().get('referer', '')
+
+
+                <div class="clearfix">
+                    <div class="left">
+                        <div class="img_box" style="padding:10px;">
+                            <img src="$site_helper.getBigPortrait(user.cover_url, user.big_portrait, 155, 210)" />
+                        </div>
+                        <p class="title" style="width:80px;">大尺寸</p>
+                    </div>
+                    <div class="left">
+                        <div class="img_box" style="padding:5px;">
+                            <img src="$site_helper.getSmallPortrait(user.cover_url, user.small_portrait, 50)" />
+                        </div>
+                        <p class="title" style="width:80px;">小尺寸</p>
+                    </div>
+                </div>
+                <a href="/accounts/portrait" class="tip01 left corner4px" style="background:#94b640;" >编辑头像</a>
+            </div>
+            -->
+            <div class="form_row clearfix">
+                <label>肤质:</label>
+                <div style="height:30px;line-height:30px;">
+                    <select id="skin_select" name="skin" fx="defaultvalue[value=$user.skin]" class="left" autocomplete="off" >
+                        <option value="中性肤质">中性肤质</option>
+                        <option value="干性肤质">干性肤质</option>
+                        <option value="敏感性肤质">敏感性肤质</option>
+                        <option value="混合性肤质">混合性肤质</option>
+                        <option value="油性肤质">油性肤质</option>
+                    </select>
+                    <a href="javascript:void(0)" onclick="openSkinTest(); return false;" class="tip01 left corner8px" style="margin:3px 0 0 15px;" >不知道自己的肤质? 马上测试吧</a>
+                </div>
+            </div>
+
+            <div class="form_row clearfix">
+            <p style="float:right;color:#bbb;margin:16px 80px 0px 0px;_margin-right:50px;font-size:12px;">最多<span id="char_num" style="font-size:14px;padding:0 5px;color:#888;">80</span>字</p>
+            <label>自我介绍:</label>
+            <textarea class="inputFill corner4px" name="intro" autocomplete="off" fx="lenlimit[len=80;] " style="width:470px; height:70px; font-size:12px;  max-width:498px; max-height: 70px; margin-bottom:10px;">$user.intro</textarea>
+
+            </div>
+            <div class="clearfix" style="position: relative; width:920px; padding-bottom:20px; margin-bottom:20px;">
+                <div class="form_row clearfix">
+                    <label>真实姓名:</label>
+                    <input name="realname" type="text" class="inputFill corner4px" value="$user.realname" style="margin-bottom:0px;" />
+                </div>
+
+                <div class="form_row clearfix">
+                    <label>手机号码:</label>
+                    <input name="phone_number" type="text"  class="inputFill corner4px" value="$user.phone_number" style="margin-bottom:0px;" />
+                </div>
+
+                <div class="form_row clearfix">
+                    <label>职业:</label>
+                    <select name="profession" fx="defaultvalue[value=$user.profession]" autocomplete="off" style="margin-bottom:0px;" >
+                        <option value="unknown" >请选择</option>
+                        <option value="农林渔牧矿业" >农林渔牧矿业</option>
+                        <option value="制造业" >制造业</option>
+                        <option value="信息网络相关业" >信息网络相关业</option>
+                        <option value="传媒公关广告业" >传媒公关广告业</option>
+                        <option value="金融保险业" >金融保险业</option>
+                        <option value="运输通信业" >运输通信业</option>
+                        <option value="建筑不动产业" >建筑不动产业</option>
+                        <option value="商业" >商业</option>
+                        <option value="服务业" >服务业</option>
+                        <option value="军警教育公务员" >军警教育公务员</option>
+                        <option value="自由职业" >自由职业</option>
+                        <option value="学生" >学生</option>
+                        <option value="待业中" >待业中</option>
+                        <option value="其他" >其他</option>
+                    </select>
+                </div>
+
+                <div class="form_row clearfix">
+                    <label>职能:</label>
+                    <select name="functions" fx="defaultvalue[value=$user.functions]" autocomplete="off" style="margin-bottom:0px;" >
+                        <option value="unknown" >请选择</option>
+                        <option value="法人/个体">法人/个体</option>
+                        <option value="行政/总务/法务">行政/总务/法务</option>
+                        <option value="营销/企划/项目经理">营销/企划/项目经理</option>
+                        <option value="客服/门市/业务/贸易">客服/门市/业务/贸易</option>
+                        <option value="餐饮/旅游/美容美发">餐饮/旅游/美容美发</option>
+                        <option value="信息软件">信息软件</option>
+                        <option value="操作/技术/维修">操作/技术/维修</option>
+                        <option value="物流/运输">物流/运输</option>
+                        <option value="营建/制图">营建/制图</option>
+                        <option value="传播艺术/设计">传播艺术/设计</option>
+                        <option value="文字/写作">文字/写作</option>
+                        <option value="医疗/保健服务">医疗/保健服务</option>
+                        <option value="学术/教育/辅导">学术/教育/辅导</option>
+                        <option value="研发">研发</option>
+                        <option value="生产制造/品管/环卫">生产制造/品管/环卫</option>
+                        <option value="军警消/安保">军警消/安保</option>
+                        <option value="财会/金融专业">财会/金融专业</option>
+                        <option value="其它">其它</option>
+                    </select>
+                 </div>
+
+                <div class="form_row clearfix">
+                    <label>教育程度:</label>
+                    <select name="education" fx="defaultvalue[value=$user.education]" autocomplete="off" style="margin-bottom:0px;" >
+                        <option value="unknown" >请选择</option>
+                        <option value="高中以下">高中以下</option>
+                        <option value="高中">高中</option>
+                        <option value="专科">专科</option>
+                        <option value="本科">本科</option>
+                        <option value="研究生以上">研究生以上</option>
+                    </select>
+                </div>
+
+                <div class="form_row clearfix">
+                    <label>月收入:</label>
+                    <select name="income" fx="defaultvalue[value=$user.income]" autocomplete="off" style="margin-bottom:0px;" >
+                        <option value="unknown" >请选择</option>
+                        <option value="2000以下">2000以下</option>
+                        <option value="2100-3500">2100-3500</option>
+                        <option value="3501-5000">3501-5000</option>
+                        <option value="5001-8000">5001-8000</option>
+                        <option value="8001-12000">8001-12000</option>
+                        <option value="12001以上">12001以上</option>
+                    </select>
+                </div>
+
+                <div class="form_row clearfix">
+                    <label>地址:</label>
+                    <input name="address" type="text" class="inputFill corner4px" value="$user.address" style="margin-bottom:0px;" />
+                </div>
+            </div>
+
+            <p id="error_tip" class="hidden"></p>
+            <div style="width:100%; margin:0 0 20px 0;">
+                <input type="submit" value="保存" class="btnFx01 corner4px" style="margin:20px 0 20px 0"; />
+            </div>
+        </form>
+
+    </div>
+$:page_module.TestSkin()

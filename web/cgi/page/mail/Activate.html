@@ -1,0 +1,8 @@
+$def with(user, acode)
+
+欢迎您来到凹凹啦。
+您的注册信息是：
+用户名：$user.username
+Email: $user.email
+激活地址：$site_helper.config.HOST_NAME/register-activate?userid=$user.Userid&acode=$acode
+您可以直接点击激活地址来激活您的帐号(或者复制到浏览器的地址栏中)。

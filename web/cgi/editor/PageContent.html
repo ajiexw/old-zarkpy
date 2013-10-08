@@ -1,0 +1,15 @@
+$def with(ids, page_name, content, model_name, title, tip)
+
+$# ../editorcontroller/content/Review.py
+$# ../page/Review.html
+
+<h2 class="block_title">$title</h2>
+<p class="tip">$tip</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="$page_name" />
+    <input type="hidden" name="content"  value="$content" />
+    <input type="hidden" name="model_name"  value="$model_name" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+

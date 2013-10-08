@@ -1,0 +1,29 @@
+$def with(user)
+
+$# ../../pagecontroller/user/Domain.py
+
+<div class="form_wrap clearfix right" style="border-left:1px dotted #ddd; padding-left:35px;">
+    $if not user.self_domain:
+        <form action="/accounts?referer=/success%3Fmsg=修改成功%26referer=/accounts/domain" method="POST" class="basicform" >
+            <h3>个性域名</h3>
+            <p class="title" style="margin-bottom:20px;width:456px;" >设置个性化域名，让朋友更容易找到你~
+                <span id="domain_error" class="error"></span>
+            </p>
+            <div class="clearfix">
+                <span style="font-size:14px;color:#333;float:left;">$site_helper.config.HOST_NAME/u/</span>
+                <input name="self_domain" type="text"  class="inputFill corner4px left" onblur="openCheckDomain(this,this.value);" fx="validation[type=notempty;invalid_id=domain_error;invalid_msg=填写信息不能为空] validation[type=domain;invalid_id=domain_error;invalid_msg=域名格式仅支持字母数字及下划线] validation[type=minlen;len=2;invalid_id=domain_error;invalid_msg=密码的长度不能低于2个字符]" />
+            </div>
+            <input type="submit" class="btnFx01 corner4px left" value="保存" style=" margin-top:20px; margin-right:18px;" />
+            <span class="left" style="margin-top:28px;color:#94b640;">保存后就不能修改了～</span>
+        </form>
+    $else:
+        <div class="basicform">
+            <h3>个性域名</h3>
+            <p class="title" style="margin:20px 0px;width:456px;" >
+                <img src="/img/page/accept.png" style="width:40px;float:left" />
+                <span style="height:40px;line-height:40px;margin-left:10px;">您已拥有个性域名:</span>
+            </p>
+            <a href="$site_helper.config.HOST_NAME/u/$user.self_domain" style="font-size:18px;margin-left:50px;">$site_helper.config.HOST_NAME/u/$user.self_domain</a>
+        </div>
+
+</div>

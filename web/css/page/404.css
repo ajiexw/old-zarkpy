@@ -1,0 +1,8 @@
+
+.box_404 { width:600px; height:378px; position:relative; margin:0 auto; }
+.box_404 a {display:block; }
+.box_404 a h2 {display:none; }
+.box_404 .back_index { position:absolute; width:105px; height:50px; top:160px; left:15px;  }
+.box_404 .back_uplevel { position:absolute; width:120px; height:55px; top:150px; right:20px;  }
+
+

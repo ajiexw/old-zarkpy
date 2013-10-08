@@ -1,0 +1,153 @@
+$def with(user, first_page_feeds_html, pagination_html)
+
+$var title: 的美妆主页-凹凹啦天天都有新分享，一个真实的化妆品点评网站
+
+$# ../../pagecontroller/user/User.py
+$# ../../../js/page/User.js
+
+<div id="main" class="clearfix">
+    <div class="u_box clearfix hidden" >
+        <div class="clearfix" >
+            <div class="review flow_box">
+                <h3>最近心得</h3>
+                $if len(user.latest_reviews) > 0:
+                    <ul class="clearfix">
+                        $ z_index = 100
+                        $for review in user.latest_reviews:
+                            $if review and review.makeup:
+                                <li fx="hovershow[showid=user_base_rev_title_$loop.index]" style="z-index: $(z_index-loop.index)">
+                                    <p class="rev_title corner4px" id="user_base_rev_title_$loop.index" style="z-index: $(z_index-loop.index)" fx="corner[radius=4]" >$review.title</p>
+                                    <a target="_blank" href="/review/$review.Reviewid" >
+                                        <img src="$review.makeup.cover_url" alt="$review.makeup.name" title="$review.makeup.name" />
+                                    </a>
+                                </li>
+                        $# 占位图片
+                        $for i in range(9-len(user.latest_reviews)):
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <img src="/img/page/default_makeup.png" />
+                                </a>
+                            </li>
+                    </ul>
+                $else:
+                    <div class="tip_box01" style="height:185px;">
+                        <p style="margin-top:75px;">您还没有发表过心得</p>
+                        <a href="/find">去逛逛？</a>
+                    </div>
+            </div>
+
+            <div class="wanted flow_box">
+                <h3>最近长草</h3>
+                $if len(user.latest_wanteds) > 0:
+                    <ul>
+                        $for makeup in user.latest_wanteds:
+                            <li>
+                                <a target="_blank" href="/makeup/$makeup.Makeupid" >
+                                    <img src="$makeup.cover_url" alt="$makeup.name" title="$makeup.name" />
+                                </a>
+                            </li>
+                        $# 占位图片
+                        $for i in range(9-len(user.latest_wanteds)):
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <img src="/img/page/default_makeup.png" />
+                                </a>
+                            </li>
+                    </ul>
+                $else:
+                    <div class="tip_box01" style="height:185px;">
+                        <p style="margin-top:75px;">没有长草的产品</p>
+                    </div>
+                    
+            </div>
+
+            <div class="bought flow_box" style="margin:0; padding-right:0; border:0;">
+                <h3>最近买过</h3>
+                $if len(user.latest_boughts) > 0:
+                    <ul>
+                        $for makeup in user.latest_boughts:
+                            <li>
+                                <a target="_blank" href="/makeup/$makeup.Makeupid" >
+                                    <img src="$makeup.cover_url" alt="$makeup.name" title="$makeup.name" />
+                                </a>
+                            </li>
+                        $# 占位图片
+                        $for i in range(9-len(user.latest_boughts)):
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <img src="/img/page/default_makeup.png" />
+                                </a>
+                            </li>
+
+                    </ul>
+                $else:
+                    <div class="tip_box01" style="height:185px;">
+                        <p style="margin-top:75px;">没有买过的产品</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--用户关注的品牌-->
+    <!--
+    <div class="u_box clearfix" style="background: transparent; padding:0; width:100%; margin-top:30px;">
+        <div class="brand_box">
+            <div class="just_line"></div>
+            <h3>关注的品牌</h3>
+            $if len(user.liked_brands) > 0:
+                <ul>
+                    $for brand in user.liked_brands:
+                        $ style = "margin-right:0;" if loop.index % 10 == 0 else ""
+                        <li style="$style">
+                            <a target="_blank" href="/brand/$brand.Brandid" >
+                                $if brand.uri not in ['', '/img/page/default_brand.png']:
+                                    <img src="$brand.uri" alt="$brand.show_name" title="$brand.show_name" />
+                                $else:
+                                    <p title="$brand.show_name">$brand.show_name</p>
+                            </a>
+                        </li>
+                </ul>
+            $else:
+                <div class="tip_box01" style="height:83px;">
+                    <p style="margin-top:30px;">当前没有关注的品牌</p>
+                </div>
+        </div>
+    </div>
+    -->
+
+    <!--用户自己的feed流 -->
+    <div class="feed_box clearfix">
+
+        $if first_page_feeds_html:
+            <ul id="feeds_ul" class="feeds_ul clearfix" >
+                $:first_page_feeds_html
+            </ul>
+            $:page_module.Pagination(pagination_html)
+        $else:
+            <div class="tip_box01" style="height:90px;">
+                <p style="margin-top:35px;">暂时还没有任何动态信息呢</p>
+            </div>
+    </div>
+
+</div>
+
+<input type="hidden" id="subselected" value="1" />
+
+<div id="sign_box" fx="browsercenter" class="jump_box basicform hidden" style="width:570px; height:250px; z-index: 10000; ">
+    <div class="jump_box_reg" style="width:550px; z-index:12000;">
+        <a fx="toggle[target=#overlayer,#sign_box;]"  href="javascript:void(0);"class="btn_close" fx="ie6png" style="z-index:23000;"></a>
+        <div class="j_inner">
+            <div class="top_box">
+                <h3 style="text-align: left;">我的碎碎念</h3>
+            </div>
+            <div class="j_box01" style="text-align: left;">
+                <textarea class="inputFill corner4px" name="sign_content" autocomplete="off" fx="focusclean[color=#888] lenlimit[len=88;tipTarget=#char_num;] " style="width:498px; height:70px; max-width:498px; max-height: 70px; margin-bottom:10px;">贴上你今天的心情标签吧~</textarea>
+                <div class="clearfix">
+                    <p class="left" style="color:#999;">剩余<span id="char_num" class="font_num" style="font-size: 26px; padding: 0 5px; color:#666;">88</span>字</p>
+                    <a class="btnFx03 corner4px right" href="javascript:void(0);" onclick="updateSignature();return false;" style="margin-top:20px;" >念一下</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+$def with(hot_brand_ids , hot_makeup_ids , counter_ids , open_shelf_ids , other_brand_ids )
+
+$# ../editorcontroller/ContentBrandNav.py
+$# ../page/BrandNav.html
+
+<div class="clearfix viewpage_link">
+    <a href="/brand-nav" target="_blank" class="btn01" style="height:30px;" >查看页面</a>
+</div>
+
+<h2 class="block_title">热门品牌</h2>
+<p class="tip" >输入品牌id, 每行一个,3个为佳</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="brandnav" />
+    <input type="hidden" name="content"  value="hotbrand" />
+    <input type="hidden" name="model_name"  value="Brand" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join(map(str, hot_brand_ids))</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>
+
+<h2 class="block_title">热门产品</h2>
+<p class="tip" >输入产品id, 每行一个, 每5个产品对应一个品牌</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="brandnav" />
+    <input type="hidden" name="content"  value="hotmakeup" />
+    <input type="hidden" name="model_name"  value="Makeup" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join(map(str, hot_makeup_ids))</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>
+
+<h2 class="block_title">专柜品牌</h2>
+<p class="tip" >输入品牌id, 每行一个, 15个为佳</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="brandnav" />
+    <input type="hidden" name="content"  value="counter" />
+    <input type="hidden" name="model_name"  value="Brand" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join(map(str, counter_ids))</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>
+
+<h2 class="block_title">开架品牌</h2>
+<p class="tip" >输入品牌id, 每行一个, 15个为佳</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="brandnav" />
+    <input type="hidden" name="content"  value="openshelf" />
+    <input type="hidden" name="model_name"  value="Brand" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join(map(str, open_shelf_ids))</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>
+
+<h2 class="block_title">其它品牌</h2>
+<p class="tip" >输入品牌id, 每行一个, 15个为佳</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="brandnav" />
+    <input type="hidden" name="content"  value="otherbrand" />
+    <input type="hidden" name="model_name"  value="Brand" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join(map(str, other_brand_ids))</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>
+

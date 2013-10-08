@@ -1,0 +1,13 @@
+$def with(msg, referer)
+$var jsfiles: /js/page/Failed.js
+
+
+<div class="s_p_inner02 fx corner8px basic_tip clearfix" >
+    <span>$msg</span>
+    <div class="link clearfix">
+        $if len(referer)> 0:
+            <a href="$referer" id="referer">返回</a>
+    </div>
+</div>
+
+

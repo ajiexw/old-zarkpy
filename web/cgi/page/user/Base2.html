@@ -1,0 +1,208 @@
+$def with(user, sub_content)
+
+$if sub_content.get('title',None):
+    $var title:$user.username $sub_content.title
+$else:
+    $var title:凹凹啦天天都有新分享，一个真实的化妆品点评网站
+$if user.bg:
+    $var page_bg:background:url(/img/bg/$user.bg) no-repeat center fixed;background-size:cover;
+
+$var jsfiles: /js/page/User.js /js/page/Friend.js http://widget.renren.com/js/rrshare.js 
+$# jsfile: ../../../js/page/User.js 
+$# ../../pagecontroller/user/User.py
+
+<div class="clearfix">
+    <div class="s_p_inner01 user">
+        <div class="clearfix">
+            <div class="user_left_col">
+                <div class="user_box">
+                    $if user.cover_url not in ('','/img/page/default_user.png'):
+                        <a href="/accounts/portrait" enableclick="$user.Userid" class="img_box">
+                            <p showforme="$user.Userid">修改头像</p>
+                            <img src="$site_helper.getBigPortrait(user.cover_url, user.big_portrait, 200, 270)" />
+                        </a>
+                        $if len(user.daren_medals) > 0:
+                            <ul class="daren_box clearfix">
+                                $for medal in user.daren_medals:
+                                    <li class="left">
+                                        <a href="/about/us#!about_badge"><img src="$medal.uri" title="$medal.title" /></a>
+                                    </li>
+                            </ul>
+
+                    $else:
+                        <a href="/accounts/portrait" enableclick="$user.Userid" class="img_box" >
+                            <p showforme="$user.Userid" >点击上传照片哦</p>
+                            <img src="/img/page/default_user.png" alt="默认头像" />
+                        </a>
+                    <div class="clearfix" style="position:relative;">
+                        <p class="u_name">$user.username </p>
+                        $if user.daren_title:
+                            <span class="plus_v" title="凹凹啦官方认证达人"></span>
+                        <a href="/accounts" class="modify_setting" showforme="$user.Userid" fx="ie6png" title="帐号设置"></a>
+                    </div>
+
+                    $if user.daren_title:
+                        <p class="daren_title corner10px" fx="corner[radius=10]">$user.daren_title</p>
+                    <p>肤质：$user.skin</p>
+                    $if user.self_domain:
+                        <p>
+                            <span>域名：</span>
+                            <a href="$site_helper.config.HOST_NAME/u/$user.self_domain">aoaola.com/u/$user.self_domain</a>
+                        </p>
+                    $if user.intro:
+                        <p>简介：$user.intro</p>
+                    $else:
+                        <p showforme="$user.Userid">简介：<a href="/accounts" class="user_intro">关于自己，说点什么吧～</a></p>
+                    <div class="medal_box" style="border:none; padding:10px 0px 6px 0px;">
+                        <div class="clearfix">
+                            $if len(user.medals) > 0:
+                                <ul class="medal_list clearfix">
+                                    $for medal in user.medals:
+                                        $if medal.medal_type != 'daren':
+                                            <li fx="hovershow[showid=medal_$loop.index]" >
+                                                <a href="/about/us#!about_badge"><img src="$medal.uri" alt="$medal.name" /></a>
+                                                <div class="hidden medal_wrap" id="medal_$loop.index">
+                                                    <div class="medal_content clearfix" >
+                                                        <a class="left" href="/about/us#!about_badge"><img src="$medal.uri" fx="ie6png"  alt="$medal.name" /></a>
+                                                        <div class="left">
+                                                            <h3 style="margin-bottom:0px; font-size:14px;" >$medal.title</h3>
+                                                            <span>$medal.intro</span><br />
+                                                            <a href="/about/us#!about_badge" style="float:right; border:none;" >查看其他勋章>></a>
+                                                        </div>
+                                                        <span class="tag_tri"></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                </ul>
+                            $else:
+                                <p>还没有获得任何勋章哦</p>
+                        </div>
+                    </div>
+
+                    <div class="medal_box">
+                        <h3>
+                            <span class="right">金币:$user.coin</span>
+                            <span>勋章等级</span>
+                        </h3>
+                        <div class="row_box" title="当前积分: $user.goal分" >
+                            $if user.next_goal is not None and user.last_goal is not None:
+                                <p class="tip">积分: $user.goal，到Lv$(user.level+1)还需$(user.next_goal-user.goal)</p>
+                                $ width = str((user.goal-user.last_goal) * 200/ (user.next_goal-user.last_goal) ) + 'px'
+                            $else:
+                                <p class="tip">您的等级已经满了</p>
+                                $ width = '200px'
+                            <div class="level_bar">
+                                <span class="process corner4px" style="width:$width;" fx="corner[radius=4]"></span>
+                                <img src="/img/page/levelup_bg02.gif" class="bg" alt="等级勋章背景" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--
+                    <a href="/oauth/setting" class="share_setting" showforme="$user.Userid">同步分享设置</a>
+                    -->
+                    $ follow = site_helper.getModel('Follow').getBy(session.user_id, user.Userid) if session.is_login else None
+                    $if follow is None:
+                        <a href="javascript:void(0);" onclick="openPostFollow(this,$user.Userid);return false;" class="btn_follow" showforothers="$user.Userid">+关注</a>
+                    $else:
+                        <a href="javascript:void(0);" onclick="openPostUnFollow(this,$follow.Followid,$user.Userid);return false;" class="btn_nofollow" showforothers="$user.Userid">已关注</a>
+
+        
+                    $if user.follows_me:
+                        <div class="attention">
+                            <div class="fans">
+                                <h3 showforme="$user.Userid"><a href="/user-follows/$user.Userid#!follow_me_div" >关注我的人 ($len(user.follows_me))</a></h3>
+                                <h3 showforothers="$user.Userid"><a href="/user-follows/$user.Userid#!follow_me_div">关注Ta的人 ($len(user.follows_me))</a></h3>
+                                <ul class="clearfix">
+                                    $for follow in user.follows_me[:24]:
+                                        <li class="corner4px">
+                                            <a href="/user/$follow.Userid" target="_blank" class="user_photo_box">
+                                                <img src="$site_helper.getSmallPortrait(follow.cover_url, follow.small_portrait, 30)" />
+                                            </a>
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    $if user.my_follows:
+                        <div class="attention">
+                            <div class="fans">
+                                <h3 showforme="$user.Userid"><a href="/user-follows/$user.Userid#!my_follow_div">我关注的人 ($len(user.my_follows))</a></h3>
+                                <h3 showforothers="$user.Userid"><a href="/user-follows/$user.Userid#!my_follow_div">Ta关注的人 ($len(user.my_follows))</a></h3>
+                                <ul class="clearfix">
+                                    $for follow in user.my_follows[:24]:
+                                        <li class="corner4px">
+                                            <a href="/user/$follow.Userid" target="_blank" class="user_photo_box">
+                                                <img src="$site_helper.getSmallPortrait(follow.cover_url, follow.small_portrait, 30)" />
+                                            </a>
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    $if user.my_shares:
+                        <div class="attention">
+                            <div class="fans">
+                                <h3 showforme="$user.Userid"><a href="/user-follows/$user.Userid#!my_share_div">我邀请的人 ($len(user.my_shares))</a></h3>
+                                <h3 showforothers="$user.Userid"><a href="/user-follows/$user.Userid#!my_share_div">Ta邀请的人 ($len(user.my_shares))</a></h3>
+                                <ul class="clearfix">
+                                    $for follow in user.my_shares:
+                                        <li class="corner4px">
+                                            <a href="/user/$follow.Userid" target="_blank" class="user_photo_box">
+                                                <img src="$site_helper.getSmallPortrait(follow.cover_url, follow.small_portrait, 30)" />
+                                            </a>
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+                    $if user.manage_groups:
+                        <h3 style="margin-top:15px">管理的小组 ($len(user.manage_groups))</h3>
+                        <ul class="group_list clearfix" style="margin-top:12px;">
+                        $for group in user.manage_groups:
+                            <li class="clearfix">
+                                <a class="left" target="_blank" href="/group/$group.Groupsid"> 
+                                    $if group.uri:
+                                        <img class="left group_img" src="$group.uri" alt="$group.title" />
+                                    $else:
+                                        <img class="left group_img" src="/img/page/default_makeup.png" alt="$group.title" />
+                                </a>
+                                <div class="clearfix">
+                                    <span class="right members_sum">$group.members_sum个成员</span>
+                                    <a href="/group/$group.Groupsid" target="_blank">$group.title</a>
+                                </div>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+
+            <div class="user_right_col">
+                <ul id="sub-nav" class="user_nav clearfix" >
+                    <li style="padding-left:0px;">
+                        <a href="/user/$user.Userid">个人主页</a>
+                    </li>
+                    <li>
+                    <a href="/user-reviews/$user.Userid">使用心得</a>
+                    </li>
+                    <li>
+                    <a href="/user-topics/$user.Userid">小组话题</a>
+                    </li>
+                    <li>
+                        <a href="/user-wanteds/$user.Userid">欲望清单</a>
+                    </li>
+                    <li style="border:0;">
+                        <a href="/user-boughts/$user.Userid">败家战绩</a>
+                    </li>
+                </ul>
+                <div class="clearfix">
+                    $:sub_content
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+

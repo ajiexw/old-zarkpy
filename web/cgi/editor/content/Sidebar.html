@@ -1,0 +1,24 @@
+$def with( latest_news_ids, popular_makeup_ids)
+
+<h2 class="block_title" >最新资讯</h2>
+<p class="tip">输入文章id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="sidebar" />
+    <input type="hidden" name="content"  value="latestnews" />
+    <input type="hidden" name="model_name"  value="News" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in latest_news_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+
+<br/>
+<br/>
+<h2 class="block_title" >被凹产品排行榜</h2>
+<p class="tip">输入产品id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="sidebar" />
+    <input type="hidden" name="content"  value="popularmakeup" />
+    <input type="hidden" name="model_name"  value="Makeup" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in popular_makeup_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+

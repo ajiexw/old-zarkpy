@@ -1,0 +1,86 @@
+$def with(sub_page_content)
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- css -->
+    <link rel="stylesheet" href="/plugins/jquery-plugins/jqueryui/jqueryui-flick/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="/css/core.css" type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="/css/editor/Base.css" type="text/css" media="screen" charset="utf-8"/>
+    <link rel="favicon icon" type="image/png" href="/img/editor/favicon.ico" />
+    <!-- js -->
+    <script type="text/javascript" src="/plugins/jquery-plugins/jquery-1.5.1.js"></script>
+    <script type="text/javascript" src="/plugins/jquery-plugins/jquery.cookie.js"></script> 
+    <script type="text/javascript" src="/plugins/jquery-plugins/jqueryui/jqueryui-1.8.14.js"></script>
+    <script type="text/javascript" src="/plugins/zarkfx/zarkfx.js"></script>
+    <script type="text/javascript" src="/js/ZarkAPI.js"></script>
+    <script type="text/javascript" src="/js/ZarkF.js"></script>
+    <script type="text/javascript" src="/js/editor/Base.js"></script>
+    <!-- sub_page_content js and css -->
+    $if sub_page_content.get('cssfiles',None):
+        $for f in sub_page_content.cssfiles.split():
+            <link rel="stylesheet" href="$f" type="text/css" media="screen" charset="utf-8"/>
+    $if sub_page_content.get('jsfiles',None):
+        $for f in sub_page_content.jsfiles.split():
+            <script type="text/javascript" src="$f"></script>
+</head>
+<body>
+    <div class="header clearfix">
+        <h1>
+            <a href="/admin">Http://me.tangguoba.com</a>
+        </h1>
+        <form action="?" class="formsearch hidden" id="search_box">
+            <div class="searchwrap">
+                <input type="text" name="searchword" value="搜索此类目" fx="focusclean" style="color:#666666; width:150px; height:23px;" />
+                <span></span>
+            </div>
+        </form>
+
+        <div id="add_new_button" class="add_new_button hidden" >
+            <h2 style="float:left;">添加</h2>
+            <a fx="clickshow[showid=add_new]" class="addtrigger btn02" style="width:20px; height:18px" >＋</a>
+        </div>
+
+        $if session.is_admin:
+            <a href="/admin/logout" class="quit_button">$session.admin_user_name，退出</a>
+
+    </div>
+
+    <div class="left_accordion">
+        <div fx="accordion[style=zarkpy;finished=show]" class="accordion hidden" >
+            <ul>
+                <li><a>产品管理</a>
+                    <div>
+                        <ul>
+                            <li><a href="/admin">产品列表</a></li>
+                            <li><a href="/admin/judge-topic">一级分类</a></li>
+                            <li><a href="/admin/judge-review">二级分类</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a>编辑管理</a>
+                    <div>
+                        <ul>
+                            <li><a href="/admin/editor">编辑列表</a></li>
+                            <li><a href="/admin/judge-topi">一级分类</a></li>
+                            <li><a href="/admin/judge-revie">二级分类</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="sub_page_content" class="sub_page_content">
+        <a href="javascript:void(0);" onclick="$$('#sub_inner').scrollTop(0);" class="scrollup_editor"></a>
+        <div id="sub_inner" class="sub_inner">
+            $:sub_page_content
+        </div>
+        <div id="pagination_box" class="pagination_box">
+        </div>
+    </div>
+    
+</body>
+</html>

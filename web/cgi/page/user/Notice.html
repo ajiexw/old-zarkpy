@@ -1,0 +1,29 @@
+$def with(notices, pagination_html)
+$var title: 的通知中心 - 凹凹啦
+
+$# ../../pagecontroller/user/Notice.py
+
+<div class="notice_box u_box clearfix" style="padding-top:20px;">
+    <a class="del right" href="javascript:void(0)" onclick="delAllNotices();return false;" >清空全部</a>
+    <h1>通知中心</h1>
+    <ul class="notice_ul clearfix">
+        $for notice in notices:
+            $if notice.is_read == 0:
+                <li fx="hovershow[showid=del_$loop.index]">
+                    $:notice.html
+                    <a href="javascript:void(0)" class="delone" id="del_$loop.index" onclick="delOneNotice($notice.Noticeid);return false;"><img src="/img/page/del.gif"></a>
+                </li>
+        $if len(notices) != 0:
+            <div style="clear:both;padding:10px 0px 5px 0px;color:#94b640;">已读消息</div>
+        $for notice in notices:
+            $if notice.is_read == 1:
+                <li fx="hovershow[showid=del_$loop.index]">
+                    $:notice.html
+                    <a href="javascript:void(0)" class="delone" id="del_$loop.index" onclick="delOneNotice($notice.Noticeid);return false;"><img src="/img/page/del.gif"></a>
+                </li>
+    </ul>
+    <div>
+        $:page_module.Pagination(pagination_html)
+    </div>
+</div>
+

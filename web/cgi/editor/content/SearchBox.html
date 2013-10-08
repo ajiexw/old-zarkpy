@@ -1,0 +1,61 @@
+$def with(brand_ids , cat_face_ids , cat_cos_ids , cat_body_ids , attr_ids )
+
+<h2 class="block_title" >品牌</h2>
+<p class="tip">输入品牌id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="searchbox" />
+    <input type="hidden" name="content"  value="brand" />
+    <input type="hidden" name="model_name"  value="Brand" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in brand_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>
+
+<h2 class="block_title" >脸部保养</h2>
+<p class="tip">输入属性id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="searchbox" />
+    <input type="hidden" name="content"  value="catface" />
+    <input type="hidden" name="model_name"  value="MakeupCategory" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in cat_face_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>
+
+<h2 class="block_title" >彩妆</h2>
+<p class="tip">输入属性id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="searchbox" />
+    <input type="hidden" name="content"  value="catcos" />
+    <input type="hidden" name="model_name"  value="MakeupCategory" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in cat_cos_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>
+
+<h2 class="block_title" >身体保养</h2>
+<p class="tip">输入属性id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="searchbox" />
+    <input type="hidden" name="content"  value="catbody" />
+    <input type="hidden" name="model_name"  value="MakeupCategory" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in cat_body_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>
+
+<h2 class="block_title" >效果</h2>
+<p class="tip">输入效果id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="searchbox" />
+    <input type="hidden" name="content"  value="attr" />
+    <input type="hidden" name="model_name"  value="Attribute" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in attr_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+<br/>
+<br/>

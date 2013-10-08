@@ -1,0 +1,28 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv=”x-ua-compatible” content=”ie=7″ />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- css -->
+<link rel="favicon icon" type="image/png" href="/img/editor/favicon.ico" />
+<link rel="stylesheet" href="/plugins/jquery-plugins/jqueryui/jqueryui-flick/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" charset="utf-8"/>
+<link rel="stylesheet" href="/css/editor/Base.css" type="text/css" media="screen" charset="utf-8"/>
+<link rel="stylesheet" href="/css/editor/adminuser/Login.css" type="text/css" media="screen" charset="utf-8"/>
+<script type="text/javascript" src="/plugins/jquery-plugins/jquery-1.5.1.js"></script>
+<script type="text/javascript" src="/plugins/zarkfx/zarkfx.js"></script>
+</head>
+
+<body style="background-image:url(/img/editor/bg_$(randint(1,5)).jpg);">
+    <form id="login_adminuser" action="/admin/login" method="POST" class="formsignup baseform" >
+        <div class="clearfix logo_box">
+            <img src="/img/editor/aoaolalogo.png" />
+        </div>
+        <div class="inputbox" style="text-align:left;">
+            <input type="text" name="email" fx="focusclean" value="邮箱" />
+            <input type="password" name="password" fx="focusclean[onPassword]" value="密码"  />
+            <a type="submit" href="javascript:;" onclick="$$(this).parents('form').submit()" class="btn" >登 录</a>
+            <input type="submit" class="submit" style="display:none"  />
+        </div>
+    </form>
+</body>

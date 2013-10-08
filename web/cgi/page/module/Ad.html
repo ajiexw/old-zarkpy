@@ -1,0 +1,15 @@
+$def with(page_name)
+
+$# 侧边栏广告
+
+$ datas = page_module_datas.getAdDatas(page_name)
+$ style = "display:none" if not datas else ""
+
+<ul class="ad_basic" style=$style>
+    $for (index, ad_name, ad) in datas:
+    <li>
+        <a href="$ad.get('link_url', '')" target="_blank" >
+            <img class="fx" src="$ad.get('cover_url', '')" alt="$ad_name" title="$ad_name" />
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,15 @@
+$def with(msg, referer)
+$var jsfiles: /js/page/Success.js
+
+<div fx="corner[radius=8]" class="s_p_inner02 fx corner8px basic_tip clearfix" >
+    <span>$msg </span>
+    <div class="link clearfix">
+        $if len(referer)> 0:
+            <a href="$referer" id="referer">返回</a>
+        $else:
+            <a href="/">返回首页</a>
+    </div>
+</div>
+
+
+

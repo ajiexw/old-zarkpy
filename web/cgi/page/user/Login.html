@@ -1,0 +1,57 @@
+$def with(error_info, email, referer)
+
+$var title: 登录凹凹啦, 一个真实的化妆品点评网站 - 化妆品|点评|测评|免费试用
+
+$var jsfiles: /js/page/Login.js
+$# ../js/page/Login.js
+
+$# ../../pagecontroller/user/Login.py
+
+<div class="s_p_inner02" style="padding:20px 30px;">
+    <div class="form_wrap clearfix">
+        <form id="login_user" action="/login" method="POST" class="basicform left" style="width:370px;" >
+            <div class="clearfix">
+                <h2>会员登录</h2>
+                $if referer:
+                    <input type="hidden" name="referer" value="$referer" />
+
+                <p class="title clearfix">
+                    <span class="left">Email:</span>
+                    <span id="server_error" class="error" style="z-index:15000;">$error_info</span>
+                    <span id="login_email_error" class="error" style="z-index:15000;"></span>
+                </p>
+                <input type="text" name="email" class="inputFill" value="$email" fx="validation[type=email;invalid_id=login_email_error;invalid_msg=请输入正确的Email地址]" />
+
+                <p class="title clearfix">
+                    <span class="left">密码:</span>
+                    <span id="login_pw_error" class="error" style="z-index:15000;"></span>
+                </p>
+                $if email:
+                    <input type="password" autocomplete="off" value="" name="password" class="inputFill" fx="validation[type=notempty;invalid_id=login_pw_error;invalid_msg=请输入密码]" />
+                $else:
+                    <input type="password" name="password" class="inputFill corner4px" fx="validation[type=notempty;invalid_id=login_pw_error;invalid_msg=请输入密码]" />
+            </div>
+
+            <div class="rem_box clearfix">
+                <input type="checkbox" name="rememberme" class="rem_input left" checked="checked" style="margin:0 5px 0 0; *margin-top: -4px;"></input>
+                <p style="line-height:16px; margin:0 6px 0 0; font-size:12px;">记住帐号</p>
+                <a href="/accounts/forget" style="line-height:16px; font-size:12px; ">忘记密码?</a>
+            </div>
+
+            <div class="clearfix" style="width:100%; margin:0 0 50px 0;">
+                <input type="submit"  class="btnFx01 left corner4px block" fx="corner[radius=4]" value="登录" />
+            </div>
+        </form>
+
+        <div class="signpage_option left">
+            <h3>选择登录方式：</h3>
+            <div class="login_box clearfix">
+                <a class="hidden nouser_link login_sina" href="$site_helper.getController('oauth.Sina').getLoginUrl()" >新浪微博账号登录</a>
+                <a class="hidden nouser_link login_qq" href="$site_helper.getController('oauth.QQ').getLoginUrl()">QQ账号登录</a>
+                <a class="hidden nouser_link login_renren" href="$site_helper.getController('oauth.RenRen').getLoginUrl()">人人账号登录</a>
+            </div>
+            <a fx="corner[radius=8]" href="/register" class="option_jump corner8px">注册官方账号</a>
+        </div>
+    </div>
+</div>
+

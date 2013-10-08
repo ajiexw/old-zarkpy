@@ -1,0 +1,50 @@
+$def with(access_token, state, cn_site_name, error_msg, email)
+
+$# ../../pagecontroller/oauth/Login.py
+
+<div class="s_p_inner02 fx">
+    $if len(error_msg) > 0:
+        <div class="s_p_inner02 fx corner8px basic_tip clearfix" style="margin:20px 0px 40px 0; float: none; width:510px;">
+            <span>$error_msg</span>
+        </div>
+    <div class="signup_others_tip">
+        <span>您已经链接了</span>
+        <span class="cn_site_name">$cn_site_name </span>
+        <span> 帐号</span>
+        <p class="title clearfix">接下来请完成最后一步, 绑定您的邮箱：</p>
+    </div>
+
+    <form action="/oauth/login" method="POST" class="basicform register_page left" >
+
+        <input type="hidden" name="access_token" value="$access_token" />
+        <input type="hidden" name="state" value="$state" />
+        <p class="title clearfix">
+            <span class="left">＊Email</span>
+            <span id="reg_email_error" class="error"></span>
+        </p>
+        <input name="email" type="text" class="inputFill corner4px" autocomplete="off" value="$email" fx="validation[type=email;invalid_id=reg_email_error;invalid_msg=请输入正确的Email地址]" />
+
+        <p class="title clearfix">
+            <span class="left"> ＊密码</span>
+            <span id="reg_pw_error" class="error"></span>
+        </p>
+        <input value="" id="password" name="password" type="password"  class="inputFill corner4px" fx="validation[type=notempty;invalid_id=reg_pw_error;invalid_msg=请输入密码] validation[type=minlen;len=6;invalid_id=reg_pw_error;invalid_msg=密码的长度不能低于6个字符]" maxlength="60" autocomplete="off" />
+
+        <p class="title clearfix">
+            <span>＊再次输入密码</span>
+            <span id="reg_pw2_error" class="error"></span>
+        </p>
+        <input value="" name="password_again" type="password"  class="inputFill corner4px" fx="validation[type=identical;another_id=password;invalid_id=reg_pw2_error;invalid_msg=两次输入的密码不相同]" />
+
+        <input type="checkbox" name="share_this" checked="checked" autocomplete="off" />
+        <span class="title" style="display:inline-block">速度推荐给朋友</span>
+        <br />
+        <textarea cols="80" rows="10" name="share_comment" class="textareaFill corer4px" style="margin-top:10px; padding:15px;" >【来凹凹啦,找到最漂亮的自己】经常听姐妹们提起@凹凹啦, 今天我也终于注册啦! 大家一起来逛吧</textarea>
+        <p id="error_tip"></p>
+        <div class="clearfix" style="width:100%; margin:0 0 50px 0;">
+            <input type="submit" value="注册" class="btnFx01 left corner4px block" fx="corner[radius=4]" />
+        </div>
+
+    </form>
+</div>
+

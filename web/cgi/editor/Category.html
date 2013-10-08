@@ -1,0 +1,38 @@
+$def with(model_name, categorys)
+
+<div id="hide_search" class="hidden"></div>
+
+<form action="/admin/insert" method="POST" id="add_new" class="baseform form01 formadd hidden" >
+    <input type="hidden" name="model_name" value="$model_name" />
+    
+    <label class="left">分类名称:</label>
+    <input type="text" name="title" class="left" style="margin:0 15px 0 0;" />
+    <label class="left">分类介绍:</label>
+    <input type="text" name="intro" class="left" style="margin:0 15px 0 0; width:450px;" />
+
+    <button type="submit" class="btn02" >添加</button>
+
+</form>
+
+<ul>
+    $for cat in categorys:
+    <li class="clearfix list01" style="width:830px;">
+        <form action="/admin/update" method="POST" >
+            <input type="hidden" name="model_name" value="$model_name" />
+            <input type="hidden" name="model_id" value="$cat.Categoryid" />
+            <label>分类名称:</label>
+            <input type="text" name="title" value="$cat.title" style="width:150px;"/>
+            <label class="left">分类介绍:</label>
+            <input type="text" name="intro" value="$cat.intro" class="left" style="margin:0 15px 0 0; width:450px;" />
+            <button type="submit" class="btn02" >修改</button>
+        </form>
+        <!--
+        <form action="/admin/delete" method="POST" >
+            <input type="hidden" name="model_name" value="$model_name" />
+            <input type="hidden" name="model_id" value="$cat.Categoryid" />
+            <input type="submit" value="删除" />
+        </form>
+        -->
+    </li>
+</ul>
+    

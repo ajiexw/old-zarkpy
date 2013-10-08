@@ -1,0 +1,12 @@
+.s5_accordion_01 { float:left; }
+.s5_accordion_01 .ul1 { float:left; width:100%;}
+.s5_accordion_01 .li1 { clear:both;float:left; font-size:12px; width:87%;padding:0px 0px 0px 20px; position:relative;}
+.s5_accordion_01 .li1 .a1 {display:block; text-decoration:none; color:#232323; line-height:25px; border-bottom:1px solid #b3b3b3; width:100%; padding:5px 0 5px 3px;}
+.s5_accordion_01 .a1:hover {color:#6f6f6f;cursor:pointer; }
+.s5_accordion_01 .span1  {display:block; position:absolute; top:16px; right:0px; width:6px; height:7px; }
+.s5_accordion_01 .div2 {float:left; display:block;width:100%;  margin-bottom:-1px; }
+.s5_accordion_01 .ul2 { width:80%; float:right; margin-right:-3px;}
+.s5_accordion_01 .li2  {font-size:14px;width:100%;padding:0px 0px 0px 0px; position:relative;}
+.s5_accordion_01 .a2 {display:block; text-decoration:none; color:#232323; line-height:25px; border-bottom:1px solid #b3b3b3; width:100%; padding:7px 0 7px 0px; font-size:12px;}
+.s5_accordion_01 .a2:hover {color:#6f6f6f;cursor:pointer;  }
+.s5_accordion_01 .span2 {right:3px;display:block; position:absolute; top:16px; right:0px; width:6px; height:7px; }

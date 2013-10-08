@@ -1,0 +1,9 @@
+.s5_windowface01 {width:930px; height:351px; position:relative; z-index:1; margin:0 auto;}
+.s5_windowface01 .wf_wrap01 { background:url(img/showbox01_bg.png) no-repeat 0px 0px; width:100%; height:300px; position:absolute; top:0; left:0; }
+.s5_windowface01 .wf_wrap02 { background:url(img/showbox01_bg.png) no-repeat 0px -437px; width:100%; height:28px; position:absolute; top:300px; left:0; }
+.s5_windowface01 .wf_showbox_img img {width:100%; height:328px; margin-left:0px; margin-top:0px; position:relative; z-index:99; display:inline;}
+.s5_windowface01 .wf_switchbox { position:absolute; bottom:3px; left:0px; background:url(img/showbox01_bg.png) no-repeat 0px -480px; width:100%; height:46px;  z-index:99; margin:0 auto; text-align:center; overflow:hidden; }
+.s5_windowface01 .wf_switchbox .wf_switchbox_nav{ text-decoration:none; width:100%; height:46px;zoom:1;display:inline-block;*display:inline;margin:0 auto; zoom:1; display:inline-block; text-align:center; *display:inline; }
+.s5_windowface01 .wf_switchbox a { padding:5px; width:13px; height:12px;  margin-right:20px; background:url(img/switch_botton1.png) top no-repeat; margin-top:13px;  display:inline-block; zoom:1; *display:inline; }
+.s5_windowface01 .wf_switchbox a.activeSlide { padding:5px; width:13px; height:12px;  margin-right:20px; background:url(img/switch_botton3.png) top no-repeat; margin-top:13px; display:innline-block; zoom:1; *display:inline; }
+.s5_windowface01 .wf_switchbox a:focus { outline: none; }

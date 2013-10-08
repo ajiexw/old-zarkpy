@@ -1,0 +1,89 @@
+$def with(user)
+$var jsfiles: /js/page/oauth/Setting.js
+
+$# jsfile: ../../../js/page/oauth/Setting.js
+
+    <div class="form_wrap share_connect clearfix right" style="border-left:1px dotted #ddd; padding-left:35px;">
+        <form action="?referer=/success%3Fmsg=修改成功%26referer=/user/$user.Userid&check_task=oauth_bind_sina|oauth_bind_qq|oauth_bind_renren" method="POST" class="basicform">
+
+            <div class="clearfix">
+                <h3>第三方帐号绑定</h3>
+                <p class="sms">将你的凹凹啦分享同步到各大社交网站，让朋友们一起来分享</p>
+            </div>
+            <ul>
+                $for connection in user.sina_connections:
+                    <li style="border:0;">
+                        <span class="c_icon sina" fx="ie6png"></span>
+                        <p>新浪微博设置</p>
+
+                        <label>
+                            <input type="radio" name="share_Sina_$connection.SinaOAuth2id" value="on" fx="defaultvalue[value=$connection.share]" />
+                            同步
+                        </label>
+                        <label>
+                            <input type="radio" name="share_Sina_$connection.SinaOAuth2id" value="off" />
+                            不同步
+                        </label>
+
+                        <a class="unbind_link" href="/post/delete?model_name=oauth.SinaOAuth2&model_id=$connection.SinaOAuth2id&check_task=oauth_bind_sina" fx="confirm[msg=确定取消已经绑定的新浪微博帐号?]" >取消绑定 -</a>
+
+                    </li>
+                $if len(user.sina_connections) == 0:
+                    <li style="border:0;">
+                        <span class="c_icon sina" fx="ie6png"></span>
+                        <a class="bind_link" href="$site_helper.getController('oauth.Sina').getLoginUrl()" target="_blank" > 绑定新浪微博账号 + </a>
+                    </li>
+
+                $for connection in user.qq_connections:
+                    <li>
+                        <span class="c_icon qq" fx="ie6png"></span>
+                        <p>QQ账号设置</p>
+
+                        <label>
+                            <input type="radio" name="share_QQ_$connection.QQOAuth2id" value="on" fx="defaultvalue[value=$connection.share]" />
+                            同步
+                        </label>
+                        <label>
+                            <input type="radio" name="share_QQ_$connection.QQOAuth2id" value="off" />
+                            不同步
+                        </label>
+
+                        <a class="unbind_link" href="/post/delete?model_name=oauth.QQOAuth2&model_id=$connection.QQOAuth2id&check_task=oauth_bind_qq" fx="confirm[msg=确定取消已经绑定的QQ帐号?]" > 取消绑定 -</a>
+
+                    </li>
+                $if len(user.qq_connections) == 0:
+                    <li>
+                        <span class="c_icon qq" fx="ie6png"></span>
+                        <a class="bind_link" href="$site_helper.getController('oauth.QQ').getLoginUrl()" target="_blank" > 绑定QQ账号 + </a>
+                    </li>
+
+                $for connection in user.renren_connections:
+                    <li>
+                        <span class="c_icon renren" fx="ie6png"></span>
+                        <p>人人账号设置</p>
+
+                        <label>
+                            <input type="radio" name="share_RenRen_$connection.RenRenOAuth2id" value="on" fx="defaultvalue[value=$connection.share]" />
+                            同步
+                        </label>
+                        <label>
+                            <input type="radio" name="share_RenRen_$connection.RenRenOAuth2id" value="off" />
+                            不同步
+                        </label>
+
+                        <a class="unbind_link" href="/post/delete?model_name=oauth.RenRenOAuth2&model_id=$connection.RenRenOAuth2id&check_task=oauth_bind_renren" fx="confirm[msg=确定取消已经绑定的人人帐号?]" >取消绑定 -</a>
+
+                    </li>
+                $if len(user.renren_connections) == 0:
+                    <li>
+                        <span class="c_icon renren" fx="ie6png"></span>
+                        <a class="bind_link" href="$site_helper.getController('oauth.RenRen').getLoginUrl()" target="_blank" > 绑定人人账号 + </a>
+                    </li>
+
+            </ul>
+
+            $if len(user.qq_connections+user.renren_connections+user.sina_connections) > 0:
+                <input type="submit"  class="btnFx01 left corner4px block" fx="corner[radius=4]" value="保存" />
+        </form>
+
+    </div>

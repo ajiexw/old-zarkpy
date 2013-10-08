@@ -1,0 +1,45 @@
+
+$# ../editorcontroller/SendMail.py
+
+$var jsfiles: /js/editor/SendMail.js
+
+$# ../../js/editor/SendMail.js
+
+<div id="hide_search" class="hidden"></div>
+
+<div class="clearfix">
+
+    <form action="?" method="POST" class="box01 corner4px clearfix sendmail" >
+        <h2 class="block_title">邮件群发</h2>
+
+        <div class="clearfix">
+            <label class="title">发件人：</label>
+            <input type="text" name="from_addr" class="hidden" value="aoaola2011@163.com" class="corner4px" />
+            <label style="line-height:25px;">aoaola2011@163.com</label>
+        </div>
+
+            <!--
+            <p class="title">发送时间(不填则立刻发送)</p>
+            <input type="text" name="at" value="" readonly="readonly" class="corner4px" />
+            -->
+        <div class="clearfix">
+            <label class="title">主&nbsp;&nbsp;  题：</label>
+            <input type="text" name="subject" value="" class="corner4px" style="width:500px;"/>
+        </div>
+         <div class="clearfix">
+            <label class="title">收件人列表：(每行一个,建议同时给自己发一封邮件以确认是否发送成功)</label>
+            <input id="to_all" type="checkbox" name="to_all" autocomplete="off" style="margin:0px 3px 0px 15px" />
+            <label class="title">所有人</label>
+            <textarea id="to" name="to" value=""></textarea>
+        </div>
+
+        <div class="clearfix">
+            <label class="title">邮件内容：</label><br />
+            <textarea name="content" fx="richtext" value="" style="min-height:500px"></textarea>
+        </div>
+
+        <button type="submit" class="btn02">发送</button>
+    </form>
+
+</div>
+

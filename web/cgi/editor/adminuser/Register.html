@@ -1,0 +1,30 @@
+$var cssfiles: /css/editor/adminuser/Register.css
+$# cssfile: ../../../css/editor/adminuser/Register.css
+
+$var jsfiles: /js/editor/adminuser/Register.js
+$# jsfile:  ../../../js/editor/adminuser/Register.js
+
+<form id="register_adminuser" class="register_adminuser_form" action="/admin/register?model_name=AdminUser" method="POST" >
+    <div class="clear">
+        <p class="z_col1_title">Email:</p>
+        <input class="z_col1_input" type="text" name="email" />
+    </div>
+    <div class="clear">
+        <p class="z_col1_title">用户名:</p>
+        <input class="z_col1_input"  type="text" name="username" />
+    </div>
+    <div class="clear">
+        <p class="z_col1_title">密码</p>
+        <input class="z_col1_input"  type="password" name="password" /> 
+    </div>
+    <div class="clear">
+        <p class="z_col1_title">密码确认</p>
+        <input class="z_col1_input"  type="password" name="passwordagain" />
+    </div>
+    <div class="clearfix"></div>
+    <div class="btn01">
+        <input type="submit" value="注册" />
+        <span></span>
+    </div>
+    <p id="register_adminuser_error_msg" style="color:red;"></p>
+</form>

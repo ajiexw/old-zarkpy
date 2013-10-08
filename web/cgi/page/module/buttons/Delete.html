@@ -1,0 +1,7 @@
+$def with(model_name, model_id) 
+
+<form action="/post/delete" method="POST" >
+    <input type="hidden" name="model_name" value="$model_name" />
+    <input type="hidden" name="model_id"   value="$model_id" />
+    <button type="submit" fx="confirm" class="btn01">删除</button>
+</form>

@@ -1,0 +1,75 @@
+$def with(cycles)
+
+$# ../../editorcontroller/content/IndexCycle.py
+$# ../../page/Index.html
+
+<h2 class="block_title">滚动橱窗(图片尺寸为: 628 * 300)</h2>
+
+<p class="tip">注意, 此页面不是批量修改的, 每改一个请刷新一次.</p>
+
+<div>
+
+    <form id="add_new" action="/admin/insert" method="POST" class="add_list hidden" style="width:650px" enctype="multipart/form-data" >
+        <input type="hidden" name="model_name" value="IndexCycle" />
+        <label>上传图片:</label>
+        <input type="file" name="imagefile" autocomplete="off" />
+
+        <label>链接地址:</label>
+        <input type="text" name="href" autocomplete="off" />
+
+        <label>顺序:</label>
+        <input type="text" name="imgorder" autocomplete="off" />
+
+        <label>标签:</label>
+        <input type="text" name="tag" autocomplete="off" />
+
+        <label>标题:</label>
+        <input type="text" name="title" autocomplete="off" />
+
+        <textarea name="paragraph" class="text_intro" style="margin-bottom:15px;"></textarea>
+        </br>
+        <button type="submit" class="btn02" >添加</button>
+    </form>
+
+    <ul>
+        $for cycle in cycles:
+        <li class="list01 clearfix">
+            <div class="left_box">
+                <a href="$cycle.href" target="_blank" >
+                    <img src="$cycle.uri" style="max-width:300px;" />
+                </a>
+            </div>
+            <div class="right_box">
+                <form action="/admin/update" method="POST" enctype="multipart/form-data" id="edit_$cycle.IndexCycleid" >
+                    <input type="hidden" name="model_name" value="IndexCycle" />
+                    <input type="hidden" name="model_id"   value="$cycle.IndexCycleid" />
+
+                    <label>上传图片:</label>
+                    <input type="file" name="imagefile" autocomplete="off" class="left"/>
+                    </br>
+
+                    <label>链接地址:</label>
+                    <input type="text" name="href" value="$cycle.href" autocomplete="off" style="width:175px" />
+                    </br>
+
+                    <label>顺序:</label>
+                    <input type="text" name="imgorder" value="$cycle.imgorder" autocomplete="off" />
+                    <br />
+
+                    <label>标签:</label>
+                    <input type="text" name="tag" value="$cycle.tag" autocomplete="off" />
+                    </br>
+
+                    <label>标题:</label>
+                    <input type="text"   name="title" value="$cycle.title" style="width:200px" />
+                    </br>
+                    <textarea name="paragraph" class="text_intro" style="margin-bottom:15px;">$cycle.paragraph</textarea>
+                    </br>
+                </form>
+                <button href="###" onclick="$$('#edit_$cycle.IndexCycleid').submit()" class="btn02 left" style="text-align: center; margin-right:15px;" >修改</button>
+                $:page_module.buttons.AdminDelete('IndexCycle', cycle.IndexCycleid)
+            </div>
+        </li>
+    </ul>
+
+</div>

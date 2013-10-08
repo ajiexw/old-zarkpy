@@ -1,0 +1,59 @@
+$var jsfiles: /js/page/TestSkin.js
+
+$var title: 注册凹凹啦, 一个真实的化妆品点评网站 - 化妆品|点评|测评|免费试用
+
+$# ../../../js/page/TestSkin.js
+
+<div class="s_p_inner02" style="padding:20px 30px;">
+    <div class="form_wrap clearfix">
+        <form action="/register?action=register&model_name=User&check_task=all_info|register" method="POST" enctype="multipart/form-data" class="basicform register_page left" style=" width:370px;" >
+
+            <h3>注册会员</h3>
+            <p class="title clearfix">
+                <span class="left">＊Email</span>
+                <span id="reg_email_error" class="error"></span>
+            </p>
+            <input name="email" type="text" class="inputFill" fx="validation[type=email;invalid_id=reg_email_error;invalid_msg=请输入正确的Email地址]" autocomplete="off" maxlength="60" />
+
+            <p class="title clearfix">
+                <span class="left">＊用户名</span>
+                <span id="reg_name_error" class="error"></span>
+            </p>
+            <input name="username" type="text"  class="inputFill" fx="validation[type=notempty;invalid_id=reg_name_error;invalid_msg=请输入您的用户名] validation[type=minlen;invalid_id=reg_name_error;invalid_msg=用户名不能低于两个字符;len=2]" autocomplete="off" maxlength="12"  />
+
+            <p class="title clearfix">
+                <span class="left">＊密码</span>
+                <span id="reg_pw_error" class="error"></span>
+            </p>
+            <input id="password" name="password" type="password"  class="inputFill" fx="validation[type=notempty;invalid_id=reg_pw_error;invalid_msg=请输入密码] validation[type=minlen;len=6;invalid_id=reg_pw_error;invalid_msg=密码的长度不能低于6个字符]" maxlength="60" autocomplete="off" />
+
+            <p class="title clearfix" id="password_again_lable">
+                <span class="left">＊确认密码</span>
+                <span id="reg_pw2_error" class="error"></span>
+            </p>
+            <input name="password_again" id="password_again" type="password"  class="inputFill" fx="validation[type=identical;another_id=password;invalid_id=reg_pw2_error;invalid_msg=两次输入的密码不相同] " autocomplete="off" />
+
+            <div class="rule_box clearfix">
+                <div class="clearfix radiobox">
+                    <input type="checkbox" autocomplete="off" checked="checked" fx="toggle[target=#post_register_btn]" /><p>同意<a href="/about/us#!about_rule" target="_blank">《凹凹啦免责隐私条款》</a></p>
+                </div>
+            </div>
+
+            <div class="clearfix" style="width:100%; margin:0 0 20px 0;">
+                <input type="submit" id="post_register_btn" fx="corner[radius=4]" class="btnFx01 left corner4px block" value="注册" />
+            </div>
+        </form>
+
+        <div class="signpage_option left">
+            <h3>选择登录方式：</h3>
+            <div class="login_box clearfix">
+                <a class="hidden nouser_link login_sina" href="$site_helper.getController('oauth.Sina').getLoginUrl()" >新浪微博账号登录</a>
+                <a class="hidden nouser_link login_qq" href="$site_helper.getController('oauth.QQ').getLoginUrl()">QQ账号登录</a>
+                <a class="hidden nouser_link login_renren" href="$site_helper.getController('oauth.RenRen').getLoginUrl()">人人账号登录</a>
+            </div>
+            <a href="/login" class="option_jump corner8px" fx="corner[radius=8]">使用凹凹啦账号登录</a>
+        </div>
+    </div>
+</div>
+
+$:page_module.TestSkin()

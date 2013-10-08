@@ -1,0 +1,50 @@
+$def with(user)
+
+$var jsfiles: /js/page/ModifyPortrait.js
+$# ../../pagecontroller/user/Modify.py
+
+    <div class="form_wrap clearfix right" style="border-left:1px dotted #ddd; padding-left:35px;">
+        <form id="upload_form" action="/accounts?check_task=all_info" method="POST" enctype="multipart/form-data" class="basicform clearfix">
+            <h3>从电脑中选择你喜欢的照片</h3>
+            <div class="clearfix">
+                <div class="file corner4px" fx="corner[radius=4]">
+                    <input type="file" name="imagefile" value="" autocomplete="off" fx=" validation[type=notempty;invalid_id=reg_portrait_error;invalid_msg=请选择一张图片;] validation[type=endswith;values=.jpg,.png,.jpeg;invalid_id=reg_portrait_error;invalid_msg=只接受jpg/jpeg/png格式的图片;ignorecase] validation[type=filesize;min=20480;max=4194304;invalid_id=reg_portrait_error;invalid_msg=图片的尺寸必须大于20k,小于4M;]" />
+                    <input name="sex" type="hidden" value="$user.sex" autocomplete="off" />
+                </div>
+                <input type="submit" value="上传照片" class="btnFx04 corner4px left" fx="corner[radius=4]" style="position: relative; left:10px;" />
+                <span id="reg_portrait_error" class="file_error hidden" style="margin:8px 0 0 25px;"></span>
+            </div>
+        </form>
+        <div class="modify_portrait_box clearfix">
+            <form id="edit_form" action="/accounts?referer=/success%3Fmsg=修改成功%26referer=/accounts" method="POST" class="basicform clearfix" style="margin-left:10px;" >
+                <div style="margin:20px 0; padding-bottom:40px; border-bottom:1px dotted #ccc;">
+                    <h3>编辑小头像</h3>
+                    <div class="clearfix">
+                        <img id="small_img" class="original_img" src="$user.cover_url" alt="$user.username" title="$user.username" fx="imgareaselect[previewid=smallpreview;foursquare;valueid=smallvalue;persistent=false]" />
+                        <div class="small_wrap">
+                            <div id="smallpreview" style="width:96px; height:96px;"></div>
+                            <p>预览</p>
+                        </div>
+                    </div>
+
+                    <input id="smallvalue" name="small_portrait" value="$user.small_portrait" type="hidden" autocomplete="off" />
+                </div>
+
+                <div class="clearfix">
+                    <h3>编辑大头像</h3>
+                    <div class="clearfix">
+                        <img class="original_img" src="$user.cover_url" alt="$user.username" title="$user.username" fx="imgareaselect[previewid=bigpreview;aspectRatio=200:270;valueid=bigvalue;persistent=false]"/>
+                        <div class="big_wrap">
+                            <div id="bigpreview" style="width:200px; height:270px;"></div>
+                            <p>预览</p>
+                        </div>
+                    </div>
+
+                    <input id="bigvalue" name="big_portrait" value="$user.big_portrait" type="hidden" autocomplete="off" />
+
+                </div>
+                <input type="submit" class="btnFx01 corner4px" value="保存" style="margin:30px 0;" />
+            </form>
+        </div>
+    </div>
+

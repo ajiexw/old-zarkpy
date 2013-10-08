@@ -1,0 +1,14 @@
+$def with(attr_ids)
+
+$# ../editorcontroller/content/Review.py
+$# ../page/Review.html
+
+<h2 class="block_title">发表心得效果备选项</h2>
+<p class="tip">输入效果id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="makeup" />
+    <input type="hidden" name="content"  value="attributes" />
+    <input type="hidden" name="model_name"  value="Attribute" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in attr_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>

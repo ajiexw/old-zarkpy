@@ -1,0 +1,54 @@
+$def with(latest_news_ids, latest_makeup_ids, current_month_makeup_ids, last_month_makeup_ids)
+
+$# ../editorcontroller/content/NewsNav.py
+$# ../page/NewsNav.html
+
+<div class="clearfix viewpage_link">
+    <a href="/news" target="_blank" class="btn01" style="height:30px;" >查看页面</a>
+</div>
+
+<h2 class="block_title">美妆新资讯</h2>
+<p class="tip" >输入资讯id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="newsnav" />
+    <input type="hidden" name="content"  value="latestnews" />
+    <input type="hidden" name="model_name"  value="News" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in latest_news_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+
+<br/>
+<br/>
+<h2 class="block_title">新品抢鲜</h2>
+<p class="tip" >输入产品id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="newsnav" />
+    <input type="hidden" name="content"  value="latestmakeup" />
+    <input type="hidden" name="model_name"  value="Makeup" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in latest_makeup_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+
+<br/>
+<br/>
+<h2 class="block_title">新品凹凹历(本月)</h2>
+<p class="tip" >输入产品id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="newsnav" />
+    <input type="hidden" name="content"  value="currentmonth" />
+    <input type="hidden" name="model_name"  value="Makeup" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in current_month_makeup_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+
+<br/>
+<br/>
+<h2 class="block_title">新品凹凹历(上月)</h2>
+<p class="tip" >输入产品id, 每行一个</p>
+<form action="/admin/pagecontent" method="POST" >
+    <input type="hidden" name="page" value="newsnav" />
+    <input type="hidden" name="content"  value="lastmonth" />
+    <input type="hidden" name="model_name"  value="Makeup" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in last_month_makeup_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>

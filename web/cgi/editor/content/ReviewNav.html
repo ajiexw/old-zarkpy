@@ -1,0 +1,46 @@
+$def with(show_brand_ids, review_categorys, review_attributes, recommends)
+
+$# ../../editorcontroller/content/ReviewNav.py
+$# ../page/ReviewNav.html
+
+<div class="clearfix viewpage_link">
+    <a href="/book" target="_blank" class="btn01" style="height:30px;" >查看页面</a>
+</div>
+
+<h2 class="block_title">首推品牌</h2>
+<p class="tip">首推品牌三级分类表, 第一级为字母, 第二级为品牌id, 第三级为产品id</p>
+<form action="/admin/leveltable" method="POST" style="margin-bottom:30px;" >
+    <input type="hidden" name="page" value="reviewnav-recommend_brands" />
+    <textarea name="content" autocomplete="off" class="textarea01" >$recommends</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+
+<!--
+<form action="/admin/pagecontent" method="POST" style="margin-bottom:30px;" >
+    <input type="hidden" name="page" value="reviewnav" />
+    <input type="hidden" name="content"  value="showbrand" />
+    <input type="hidden" name="model_name"  value="Brand" />
+    <textarea name="model_ids" autocomplete="off" class="textarea01" >$'\r\n'.join([str(id) for id in show_brand_ids])</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+-->
+
+<br/>
+<br/>
+<h2 class="block_title">按属性查找三级分类表</h2>
+<form action="/admin/leveltable" method="POST" >
+    <input type="hidden" name="page" value="reviewnav-categorys" />
+    <textarea name="content" autocomplete="off" class="textarea01"  style="height:400px;" >$review_categorys</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+
+<br/>
+<br/>
+<h2 class="block_title">按效果查找二级分类表</h2>
+<form action="/admin/leveltable" method="POST" style="margin-bottom:30px;" >
+    <input type="hidden" name="page" value="reviewnav-attributes" />
+    <textarea name="content" autocomplete="off" class="textarea01"  style="height:400px;" >$review_attributes</textarea>
+    <button type="submit" class="btn02 block" >修改</button>
+</form>
+
+

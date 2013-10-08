@@ -1,0 +1,93 @@
+$def with(images, pagination_html)
+
+$# ../../editorcontroller/imagecenter/PageContent.py
+
+<h2 class="block_title">页面图片内容</h2>
+
+<div>
+
+    <form id="add_new" action="/admin/insert" method="POST" class="add_list hidden" style="width:650px" enctype="multipart/form-data" >
+        <input type="hidden" name="model_name" value="ContentImage" />
+        <label>上传图片:</label>
+        <input type="file" name="imagefile" autocomplete="off" />
+
+        <label>标签:</label>
+        <a id="open_select_box_btn" >选择</a>
+        <input type="text" name="tag" fx="choosebox[boxid=select_contentimage_tag;cancel=#cancel_select_contentimage_tag;trigger=#open_select_box_btn]" />
+
+        <label>标题:</label>
+        <input type="text" name="title" autocomplete="off" />
+
+        <label>alt:</label>
+        <input type="text" name="alt" autocomplete="off" />
+
+        <button type="submit" class="btn02" >添加</button>
+    </form>
+
+    <form action="?" method="GET" class="box01 corner4px clearfix" >
+        <h2 class="block_title">筛选</h2>
+        <div class="clearfix">
+
+            <p class="title" style="line-height:14px; margin-right:10px;">tag:</p>
+            <div class="left" style="width:160px; margin-right:20px;">
+                <a id="open_select_box_btn2" >选择</a>
+                <input type="text" name="tag" autocomplete="off" value="" fx="choosebox[boxid=select_contentimage_tag;cancel=#cancel_select_contentimage_tag;trigger=#open_select_box_btn2]" class="corner4px" style="float: none;" />
+            </div>
+
+            <button type="submit" class="btn01 left" style="margin-right:15px; margin-top:15px;" >搜索</button>
+            <a href="?" class="btn01 left" style="height:30px; width:58px; line-height:32px; margin-top:15px;" >查看全部</a>
+        </div>
+
+    </form>
+    $:page_module.SelectContentImageTag()
+
+    <ul>
+        $for image in images:
+            <li class="list01 clearfix">
+                <div class="imgshow_box">
+                    <div class="left_box">
+                        <img src="$image.uri" />
+                    </div>
+                    <div class="right_box">
+                        <form action="/admin/update" method="POST" enctype="multipart/form-data" >
+
+                            <input type="hidden" name="model_name" value="ContentImage" />
+                            <input type="hidden" name="model_id"   value="$image.ContentImageid" />
+
+                            <label>图片地址:</label>
+                            <input type="text" readonly="readonly" autocomplete="off" value="$image.uri" style="width:300px;" />
+                            </br>
+
+
+                            <label>上传图片:</label>
+                            <input type="file" name="imagefile" autocomplete="off" />
+                            </br>
+
+                            <label>标签:</label>
+                            <input type="text" name="tag" autocomplete="off" value="$image.tag"  style="width:300px;"/>
+                            </br>
+
+                            <label>标题:</label>
+                            <input type="text" name="title" autocomplete="off" value="$image.title" style="width:300px;" />
+                            </br>
+
+                            <label>alt:</label>
+                            <input type="text" name="alt" autocomplete="off" value="$image.alt" style="width:300px;" />
+                            </br>
+
+                            <button type="submit" class="btn02 block left" style="margin-right:15px;" >修改</button>
+
+                        </form>
+                        $:page_module.buttons.AdminDelete('ContentImage', image.ContentImageid)
+                    </div>
+                </div>
+            </li>
+    </ul>
+
+    <div class="clearfix pagination" >
+        $:pagination_html
+    </div>
+
+</div>
+
+

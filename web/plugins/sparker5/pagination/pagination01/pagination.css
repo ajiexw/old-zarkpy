@@ -1,0 +1,5 @@
+.s5_pagination01 {margin-top:30px; }
+.s5_pagination01 .current_page {color:#000;}
+.s5_pagination01 ul {float:left;}
+.s5_pagination01 ul li  {display:block; float:left; color:#6F6F6F; padding:0 5px; }
+.s5_pagination01 ul li  a {display:block; float:left; color:#6F6F6F; font-size:12px; }
