@@ -11,7 +11,7 @@ config = web.Storage({
         'DB_HOST' : '127.0.0.1',
         'DB_DATABASE' :'songshu',
         'DB_USER' : 'songshu',
-        'DB_PASSWORD' :'4658721ddfcb2fff651bd369ea632200c4c62219',
+        'DB_PASSWORD' :'*******************************',
         'DB_CHARSET' : 'utf8',
         'CGI_PATH' : '/opt/songshu/web',
         'UPLOAD_IMAGE_PATH' : '/opt/songshu/web/img/upload/', # relative to system root
